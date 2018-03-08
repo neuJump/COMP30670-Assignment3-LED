@@ -100,6 +100,20 @@ class LightTest:
                     for x in range(int(self.b),int(self.d)):
                         # Modify multi-dimensional array
                         self.lights[i][x] = 0
+                        
+            elif re.match(".*(switch).*", input):
+                 
+                self.control(input, 7)
+                
+                # Rows
+                for i in range(int(self.a),int(self.c)):
+                    # Columns
+                    for x in range(int(self.b),int(self.d)):
+                        # Modify multi-dimensional array
+                        if self.lights[i][x] == 0: 
+                            self.lights[i][x] = 1
+                        elif self.lights[i][x] == 1:
+                            self.lights[i][x] = 0
 
     def lightsCount(self):
         # Count numpy array
