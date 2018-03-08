@@ -17,22 +17,20 @@ class LightTest:
         self.size = size
         self.lights = np.array([[0]*self.size for _ in range(self.size)])
         
-    def control(data, start):
+    def control(self, data, start):
         t1 = data[start:].rsplit(sep=" ", maxsplit=2)
         t2 = t1[0].rsplit(sep=",", maxsplit=1)
         t3 = t1[2].rsplit(sep=",", maxsplit=1)
         
         # Check if points exceed grid boundaries
         if int(t2[0]) < 0:
-            a = 0
-        elif int(t2[0]) > 100:
-            a = 100
+            self.a = 0
+        elif int(t2[0]) > self.size:
+            self.a = self.size
         else:
-            a = int(t2[0])
+            self.a = int(t2[0])
             
-        return a
-                
-    def transCheck(dataSet, transType):
+    def transCheck(self, dataSet, transType):
         
         regEx = ".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*"
         
@@ -49,34 +47,34 @@ class LightTest:
             result = re.match(regEx, dataSet);
             return dataSet, result
     
-    def apply(data, transType, size):
+    def apply(self, data, lineCount, transType):
           
         # Extract string  
-        input, result = LightTest.transCheck(data, transType);
+        input, result = self.transCheck(data[lineCount], transType);
         
         # Scrub strings of whitespace
         input = " ".join(input.split())
         input = input.replace(' ,', ',')
         
-        lights = np.array([[0]*size for _ in range(size)])
-    
         if(result != None):
             
             if re.match(".*(turn on).*", input):
                 
+                self.control(input, 8)
+                    
                 # Rows
-                for i in range(0,100):
+                for i in range(int(self.a),int(self.c)):
                     # Columns
-                    for x in range(0,100):
+                    for x in range(int(self.b),int(self.d)):
                         # Modify multi-dimensional array
-                        lights[i][x] = 1
-                        
-        return lights
-    
-    def lightsCount(size):
-        ma = np.array([[1]*size for _ in range(size)])
-        
+                        self.lights[i][x] = 1
+
+    def lightsCount(self):
         # Count numpy array
-        return np.count_nonzero(ma)
+        pass
+    
+
+if __name__ == "__main__":
+    sys.exit(main())
         
    
