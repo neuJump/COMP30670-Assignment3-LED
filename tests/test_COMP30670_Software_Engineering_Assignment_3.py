@@ -31,3 +31,10 @@ class TestComp30670_software_engineering_assignment_3(unittest.TestCase):
         size, instructions, type = cli.inputParse(inputFile)
         assert size == 4
         assert instructions == ['turn off 660,55 through 986,197\n', '\n', 'turn off 341,304 through 638,850\n', '\n', 'turn off 199,133 through 461,193\n', '\n', 'switch 322,558 through 977,958']
+        
+        # Command test 1
+        inputFile = "./data/input_test.txt"
+        size, instructions, type = cli.inputParse(inputFile)
+        instruction1 = instructions[0]
+        cmd = instruction1[0:8] 
+        assert cmd == "turn off"
