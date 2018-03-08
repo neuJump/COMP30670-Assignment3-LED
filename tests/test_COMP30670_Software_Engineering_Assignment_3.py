@@ -53,6 +53,19 @@ class TestComp30670_software_engineering_assignment_3(unittest.TestCase):
         cmd3 = instruction3[0:6]
         assert cmd3 == "switch"
         
+        # Coordinate test
+        inputFile = "./data/input_test.txt"
+        size, instructions, type = cli.inputParse(inputFile)
+        instruction4 = instructions[0]
+        x1 = instruction4[9:12]
+        x2 = instruction4[13:15]
+        y1 = instruction4[24:27]
+        y2 = instruction4[28:31]
+        assert x1 == "660" 
+        assert x2 == "55"
+        assert y1 == "986"
+        assert y2 == "197"
+        
         
         
         
