@@ -16,16 +16,20 @@ class LightTest:
         self.size = size
         self.lights = np.array([[0]*self.size for _ in range(self.size)])
         
-    def control(self, data, start):
-        #t1 = data[start:].rsplit(sep=" ", maxsplit=2)
-        #t2 = t1[0].rsplit(sep=",", maxsplit=1)
-        #t3 = t1[2].rsplit(sep=",", maxsplit=1)
-        pass
+    def control(data, size):
         
-    #def transCheck(self, dataSet, transType):
-    def transCheck(dataSet, transType):
+        # Check if points exceed grid boundaries
+        if int(data) < 0:
+            a = 0
+        elif int(data) > size:
+            a = size
+        else:
+            a = int(data)
+            
+        return a
+                
+    def transCheck(self, dataSet, transType):
         
-        # Regular expression
         regEx = ".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*"
         
         if transType == "net":
@@ -34,12 +38,12 @@ class LightTest:
             a2 = a1[0].split("'", 1)
             input = a2[1]
             result = re.match(regEx, input);
-            return result
+            return input, result
         
         else:
             
             result = re.match(regEx, dataSet);
-            return result
+            return dataSet, result
     
     def apply(self, data, lineCount, transType):
         

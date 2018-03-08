@@ -78,6 +78,19 @@ class TestComp30670_software_engineering_assignment_3(unittest.TestCase):
             count += 1
         assert count == 100
         
+        # Tested regex
+        inputFile = "./data/input_test.txt"
+        size, instructions, type = cli.inputParse(inputFile)
+        regEx = ".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*"
+        for i in instructions:
+            lightsRegex = lights.LightTest.transCheck(i, type)
+            assert lightsRegex == None
+            
+        # Test invalid coordinates
+        invalid1 = "200"
+        invalidCheck = lights.LightTest.control(invalid1, 100)
+        assert invalidCheck == 100
+        
         
         
         
