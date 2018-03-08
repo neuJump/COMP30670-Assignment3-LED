@@ -10,45 +10,27 @@ import numpy as np
 class LightTest:
     
     lights = None;
+    size = 100
 
     def __init__(self, size):
 
         self.size = size
         self.lights = np.array([[0]*self.size for _ in range(self.size)])
         
-    def control(self, data, start):
+    def control(data, start):
         t1 = data[start:].rsplit(sep=" ", maxsplit=2)
         t2 = t1[0].rsplit(sep=",", maxsplit=1)
         t3 = t1[2].rsplit(sep=",", maxsplit=1)
         
         # Check if points exceed grid boundaries
         if int(t2[0]) < 0:
-            self.a = 0
-        elif int(t2[0]) > self.size:
-            self.a = self.size
+            a = 0
+        elif int(t2[0]) > 100:
+            a = 100
         else:
-            self.a = int(t2[0])
+            a = int(t2[0])
             
-        if int(t2[1]) < 0:
-            self.b = 0
-        elif int(t2[1]) > self.size:
-            self.b = self.size
-        else:
-            self.b = int(t2[1])
-        
-        if int(t3[0]) < 0:
-            self.c = 0
-        elif int(t3[0]) > self.size:
-            self.c = self.size
-        else:
-            self.c = int(t3[0]) + 1
-        
-        if int(t3[1]) < 0:
-            self.d = 0
-        elif int(t3[1]) > self.size:
-            self.d = self.size
-        else:
-            self.d = int(t3[1]) + 1
+        return a
                 
     def transCheck(dataSet, transType):
         
@@ -67,7 +49,7 @@ class LightTest:
             result = re.match(regEx, dataSet);
             return dataSet, result
     
-    def apply(data, transType):
+    def apply(data, transType, size):
           
         # Extract string  
         input, result = LightTest.transCheck(data, transType);
@@ -76,6 +58,19 @@ class LightTest:
         input = " ".join(input.split())
         input = input.replace(' ,', ',')
         
-        return input
+        lights = np.array([[0]*size for _ in range(size)])
+    
+        if(result != None):
+            
+            if re.match(".*(turn on).*", input):
+                
+                # Rows
+                for i in range(0,100):
+                    # Columns
+                    for x in range(0,100):
+                        # Modify multi-dimensional array
+                        lights[i][x] = 1
+                        
+        return lights
         
    

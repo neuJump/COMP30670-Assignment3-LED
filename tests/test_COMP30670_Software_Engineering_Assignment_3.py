@@ -96,7 +96,14 @@ class TestComp30670_software_engineering_assignment_3(unittest.TestCase):
         invalidCheck2 = lights.LightTest.apply(invalid2, "file")
         assert invalidCheck2 != invalid2
         
-        
+        # Test that the method apply() loops through the matrix completely
+        matrixData = "turn on 0,0 through 100,100"
+        N = 100
+        returnedMatrix = lights.LightTest.apply(matrixData, "file", N)
+        count = 0
+        for j in returnedMatrix:
+            count += 1
+        assert count == N
         
         
         
