@@ -43,6 +43,26 @@ def inputParse(data):
 @click.option("--input", default=None, help="input URI (file or URL")
 def main(input=None):
     """Console script for COMP30670_Software_Engineering_Assignment_3."""
+    start = time.time()
+    
+    print(input)
+    
+    print("Working...")
+    
+    # Parse file
+    size, instructions, transType = inputParse(input)
+    
+    lightsCheck = lights.LightTest(size)
+ 
+    lineCount = 0  
+    for line in instructions:
+        
+        lightsCheck.apply(instructions, lineCount, transType)
+        lineCount += 1
+
+    print("Number of lights on:", lightsCheck.lightsCount())
+    print("Elapsed time:", time.time() - start)
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main())
