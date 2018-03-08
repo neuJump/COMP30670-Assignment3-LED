@@ -8,7 +8,7 @@ import click
 import urllib.request
 
 # Import lightTest
-#import lights
+import lights
 
 # Import time
 import time
