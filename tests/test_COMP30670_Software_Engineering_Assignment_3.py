@@ -46,6 +46,13 @@ class TestComp30670_software_engineering_assignment_3(unittest.TestCase):
         cmd2 = instruction2[0:7]
         assert cmd2 == "turn on"
         
+        # Command test 3
+        inputFile = "./data/input_test.txt"
+        size, instructions, type = cli.inputParse(inputFile)
+        instruction3 = instructions[8]
+        cmd3 = instruction3[0:6]
+        assert cmd3 == "switch"
+        
         
         
         
