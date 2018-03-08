@@ -50,7 +50,7 @@ class LightTest:
         else:
             self.d = int(t3[1]) + 1
                 
-    def transCheck(self, dataSet, transType):
+    def transCheck(dataSet, transType):
         
         regEx = ".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*"
         
@@ -67,11 +67,15 @@ class LightTest:
             result = re.match(regEx, dataSet);
             return dataSet, result
     
-    def apply(self, data, lineCount, transType):
-        
-        pass
+    def apply(data, transType):
           
         # Extract string  
-        #input, result = self.transCheck(data[lineCount], transType);
+        input, result = LightTest.transCheck(data, transType);
+        
+        # Scrub strings of whitespace
+        input = " ".join(input.split())
+        input = input.replace(' ,', ',')
+        
+        return input
         
    

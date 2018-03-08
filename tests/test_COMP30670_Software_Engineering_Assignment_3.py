@@ -88,8 +88,13 @@ class TestComp30670_software_engineering_assignment_3(unittest.TestCase):
             
         # Test invalid coordinates
         invalid1 = "200"
-        invalidCheck = lights.LightTest.control(invalid1, 100)
-        assert invalidCheck == 100
+        invalidCheck1 = lights.LightTest.control(invalid1, 100)
+        assert invalidCheck1 == 100
+        
+        # Test that instruction data has been scrubbed of whitespace
+        invalid2 = "switch 8, 315  through 550, 764"
+        invalidCheck2 = lights.LightTest.apply(invalid2, "file")
+        assert invalidCheck2 != invalid2
         
         
         
