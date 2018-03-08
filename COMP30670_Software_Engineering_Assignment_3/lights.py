@@ -16,17 +16,39 @@ class LightTest:
         self.size = size
         self.lights = np.array([[0]*self.size for _ in range(self.size)])
         
-    def control(data, size):
+    def control(self, data, start):
+        t1 = data[start:].rsplit(sep=" ", maxsplit=2)
+        t2 = t1[0].rsplit(sep=",", maxsplit=1)
+        t3 = t1[2].rsplit(sep=",", maxsplit=1)
         
         # Check if points exceed grid boundaries
-        if int(data) < 0:
-            a = 0
-        elif int(data) > size:
-            a = size
+        if int(t2[0]) < 0:
+            self.a = 0
+        elif int(t2[0]) > self.size:
+            self.a = self.size
         else:
-            a = int(data)
+            self.a = int(t2[0])
             
-        return a
+        if int(t2[1]) < 0:
+            self.b = 0
+        elif int(t2[1]) > self.size:
+            self.b = self.size
+        else:
+            self.b = int(t2[1])
+        
+        if int(t3[0]) < 0:
+            self.c = 0
+        elif int(t3[0]) > self.size:
+            self.c = self.size
+        else:
+            self.c = int(t3[0]) + 1
+        
+        if int(t3[1]) < 0:
+            self.d = 0
+        elif int(t3[1]) > self.size:
+            self.d = self.size
+        else:
+            self.d = int(t3[1]) + 1
                 
     def transCheck(self, dataSet, transType):
         
