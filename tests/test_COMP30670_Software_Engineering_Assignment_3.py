@@ -12,6 +12,7 @@ import urllib.request
 
 # Import project
 from COMP30670_Software_Engineering_Assignment_3 import cli
+from COMP30670_Software_Engineering_Assignment_3 import lights
 
 class TestComp30670_software_engineering_assignment_3(unittest.TestCase):
     """Tests for `COMP30670_Software_Engineering_Assignment_3` package."""
@@ -66,9 +67,16 @@ class TestComp30670_software_engineering_assignment_3(unittest.TestCase):
         assert y1 == "986"
         assert y2 == "197"
         
+    def test_lights(self):
+        """Test lights.py.""" 
         
-        
-        
+        # Testing matrix creation
+        N = 100
+        lightMatrix = lights.LightTest.listTest(N)
+        count = 0
+        for elem in lightMatrix:
+            count += 1
+        assert count == 100
         
         
         
