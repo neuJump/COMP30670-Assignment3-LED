@@ -4,15 +4,45 @@
 import sys
 import click
 
+# Import urllib
+import urllib.request
+
+# Import lightTest
+#import lights
+
+# Import time
+import time
+
+def inputParse(data):
+    if data.startswith("http"):
+        # Network
+        transType = "net"
+        size = None
+        instructions = []
+        with urllib.request.urlopen(data) as response:
+           # Read lines
+           size = int(response.readline())
+           for line in response.readlines():
+               instructions.append(line)
+
+        return size, instructions, transType
+    else:
+        # File
+        transType = "file"
+        size = None
+        instructions = []
+        with open(data, 'r') as file:
+            size = int(file.readline())
+            for line in file.readlines():
+                
+                instructions.append(line)
+                
+        return size, instructions, transType
 
 @click.command()
-def main(args=None):
+@click.option("--input", default=None, help="input URI (file or URL")
+def main(input=None):
     """Console script for COMP30670_Software_Engineering_Assignment_3."""
-    click.echo("Replace this message by putting your code into "
-               "COMP30670_Software_Engineering_Assignment_3.cli.main")
-    click.echo("See click documentation at http://click.pocoo.org/")
-    return 0
-
 
 if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+    sys.exit(main())
