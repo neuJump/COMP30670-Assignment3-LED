@@ -30,6 +30,27 @@ class LightTest:
         else:
             self.a = int(t2[0])
             
+        if int(t2[1]) < 0:
+            self.b = 0
+        elif int(t2[1]) > self.size:
+            self.b = self.size
+        else:
+            self.b = int(t2[1])
+        
+        if int(t3[0]) < 0:
+            self.c = 0
+        elif int(t3[0]) > self.size:
+            self.c = self.size
+        else:
+            self.c = int(t3[0]) + 1
+        
+        if int(t3[1]) < 0:
+            self.d = 0
+        elif int(t3[1]) > self.size:
+            self.d = self.size
+        else:
+            self.d = int(t3[1]) + 1
+            
     def transCheck(self, dataSet, transType):
         
         regEx = ".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*"
@@ -68,6 +89,17 @@ class LightTest:
                     for x in range(int(self.b),int(self.d)):
                         # Modify multi-dimensional array
                         self.lights[i][x] = 1
+                        
+            elif re.match(".*(turn off).*", input):
+                
+                self.control(input, 9)
+                
+                # Rows
+                for i in range(int(self.a),int(self.c)):
+                    # Columns
+                    for x in range(int(self.b),int(self.d)):
+                        # Modify multi-dimensional array
+                        self.lights[i][x] = 0
 
     def lightsCount(self):
         # Count numpy array
