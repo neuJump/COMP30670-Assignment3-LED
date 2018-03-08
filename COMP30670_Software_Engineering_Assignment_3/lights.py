@@ -72,5 +72,11 @@ class LightTest:
                         lights[i][x] = 1
                         
         return lights
+    
+    def lightsCount(size):
+        ma = np.array([[1]*size for _ in range(size)])
+        
+        # Count numpy array
+        return np.count_nonzero(ma)
         
    

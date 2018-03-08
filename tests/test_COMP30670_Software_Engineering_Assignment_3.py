@@ -105,7 +105,9 @@ class TestComp30670_software_engineering_assignment_3(unittest.TestCase):
             count += 1
         assert count == N
         
-        
+        # Test to count the elements in the matrix
+        lightMatrix = lights.LightTest.lightsCount(10)
+        assert lightMatrix == 100
         
         
         
