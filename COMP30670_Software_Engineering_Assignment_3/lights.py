@@ -10,7 +10,6 @@ import numpy as np
 class LightTest:
     
     lights = None;
-    size = 100
 
     def __init__(self, size):
 
@@ -117,7 +116,7 @@ class LightTest:
 
     def lightsCount(self):
         # Count numpy array
-        pass
+        return np.count_nonzero(self.lights)
     
 
 if __name__ == "__main__":
