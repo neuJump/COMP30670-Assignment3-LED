@@ -23,7 +23,7 @@ COMP30670 Software Engineering Assignment 3: Controlling an LED light installati
 * Documentation: https://COMP30670-Software-Engineering-Assignment-3.readthedocs.io.
 
 
-Features
+Run
 --------
 
 To run (using a command line interface):
