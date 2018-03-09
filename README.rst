@@ -26,7 +26,7 @@ COMP30670 Software Engineering Assignment 3: Controlling an LED light installati
 Features
 --------
 
-To run:
+To run (using a command line interface):
 
 - Run the following command to clone the repository: git clone https://github.com/neuJump/COMP30670-Assignment3-LED.git
 - In the local directory containing the cloned repository, run: pip install -e .
